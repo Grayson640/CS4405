@@ -8,7 +8,7 @@ git commit, I to insert..wq to commit	Commit changes to local repo
 git push								Push local repo to remote repo
 git pull url							Pull changes from remote repo
 git clone								Copy a remote repo into new dir
-git rm -cached <file>					Remove file from repo
+git rm --cached <file>					Remove file from repo
 git config --global user.name "name"
 git config --global user.email "email"
 git branch <name>						Make a new branch
