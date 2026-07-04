@@ -6,7 +6,7 @@ git status								Check status of files in staging area
 git commit -m "message"					Commit changes to local repo
 git commit, I to insert..wq to commit	Commit changes to local repo
 git push								Push local repo to remote repo
-git pull								Pull changes from remote repo
+git pull url							Pull changes from remote repo
 git clone								Copy a remote repo into new dir
 git rm -cached <file>					Remove file from repo
 git config --global user.name "name"
