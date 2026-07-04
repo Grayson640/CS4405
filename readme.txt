@@ -9,8 +9,8 @@ git push								Push local repo to remote repo
 git pull								Pull changes from remote repo
 git clone								Copy a remote repo into new dir
 git rm -cached <file>					Remove file from repo
-git config -global user.name "name"
-git config -global user.email "email"
+git config --global user.name "name"
+git config --global user.email "email"
 git branch <name>						Make a new branch
 git checkout <branch name>				Change branch
 git merge <branch>						Merges branch name to master branch
