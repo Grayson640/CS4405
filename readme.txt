@@ -16,3 +16,5 @@ git checkout <branch name>				Change branch
 git merge <branch>						Merges branch name to master branch
 git remote add <name> <url>				Adds a new remote repo
 git push -u <name> <branch>				Pushes changes to remote repo
+
+TEST BRANCH TEST
