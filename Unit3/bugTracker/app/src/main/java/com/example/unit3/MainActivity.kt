@@ -1,38 +1,44 @@
 package com.example.unit3
 
 import android.app.Application
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.room3.*
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.room3.ColumnInfo
+import androidx.room3.Dao
+import androidx.room3.Database
+import androidx.room3.Delete
+import androidx.room3.Entity
+import androidx.room3.Insert
+import androidx.room3.PrimaryKey
+import androidx.room3.Query
+import androidx.room3.Room
+import androidx.room3.RoomDatabase
+import androidx.room3.Update
 import com.example.unit3.ui.theme.Unit3Theme
-import android.content.Context
-import androidx.annotation.NonNull
-import androidx.lifecycle.LiveData
 import kotlinx.coroutines.flow.Flow
-
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent {
-            Unit3Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+        setContentView(R.layout.layout)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+
+
         }
     }
 }
