@@ -13,7 +13,7 @@ abstract class IssueDatabase: RoomDatabase() {
         @Volatile
         private var INSTANCE: IssueDatabase? = null
 
-        internal fun getDatabase(context: Context): IssueDatabase? {
+        internal fun getDatabase(context: Context): IssueDatabase {
             if (INSTANCE == null) {
                 synchronized(IssueDatabase::class.java){
                     if (INSTANCE == null){
@@ -23,7 +23,7 @@ abstract class IssueDatabase: RoomDatabase() {
                     }
                 }
             }
-            return INSTANCE
+            return INSTANCE!!
         }
 
     }

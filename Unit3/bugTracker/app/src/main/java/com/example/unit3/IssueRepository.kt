@@ -21,4 +21,10 @@ class IssueRepository(application: Application) {
 
     suspend fun findById(id: Int) =
         issueDao.findID(id)
+
+    suspend fun loadDefaultIssues() {
+        for (issue in DefaultIssues.issues){
+            issueDao.addIssue(issue)
+        }
+    }
 }

@@ -12,6 +12,12 @@ interface IssueDao {
     @Query("SELECT * FROM issues")
     fun getAllIssues(): Flow<List<Issue>>
 
+    @Query("SELECT COUNT(*) FROM issues")
+    suspend fun getIssueCount():Int
+
+    @Query("SELECT * FROM issues")
+    suspend fun getAllIssuesOnce(): List<Issue>
+
     @Query("SELECT * FROM issues WHERE issueID = :id")
     suspend fun findID(id: Int): Issue?
 
@@ -26,4 +32,8 @@ interface IssueDao {
 
     @Update
     suspend fun updateIssue(issue: Issue)
+
+    // Nuke it
+    @Query("DELETE FROM issues")
+    suspend fun clearAll()
 }
