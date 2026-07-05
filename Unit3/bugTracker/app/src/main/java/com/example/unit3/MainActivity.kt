@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         val issue1Button = findViewById<TextView>(R.id.issueTextView1)
         val issue2Button = findViewById<TextView>(R.id.issueTextView2)
         val issue3Button = findViewById<TextView>(R.id.issueTextView3)
+        val addButton = findViewById<Button>(R.id.addIssueButton)
 
         val db = IssueDatabase.getDatabase(applicationContext)!!
         val issueDao = db.issueDao()
@@ -78,7 +79,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val addButton = findViewById<Button>(R.id.addIssueButton)
         addButton.setOnClickListener {
             val intent = Intent(this, AddIssueActivity::class.java)
             startActivity(intent)

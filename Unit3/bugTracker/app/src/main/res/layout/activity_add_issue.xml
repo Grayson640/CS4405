@@ -168,7 +168,7 @@
         tools:layout_constraintEnd_toEndOf="@id/statusLabelTextView4" />
 
     <Button
-        android:id="@+id/updateButton"
+        android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
@@ -178,7 +178,7 @@
         app:layout_constraintStart_toStartOf="@id/priorityLabelTextView" />
 
     <Button
-        android:id="@+id/deleteButton"
+        android:id="@+id/cancelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
