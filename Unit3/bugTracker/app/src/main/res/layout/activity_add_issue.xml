@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddIssueActivity">
+
+    <EditText
+        android:id="@+id/editDescriptionText"
+        android:layout_width="270dp"
+        android:layout_height="154dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:focusable="auto"
+        android:hint="Describe Issue"
+        android:inputType="textMultiLine"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollHorizontally="false"
+        android:singleLine="false"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/descriptionLabelTextView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/descriptionLabelTextView2"
+        app:layout_constraintTop_toTopOf="@+id/descriptionLabelTextView2" />
+
+    <TextView
+        android:id="@+id/descriptionLabelTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="78dp"
+        android:text="Description:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleLabelTextView" />
+
+    <TextView
+        android:id="@+id/addHomeTextView"
+        android:layout_width="256dp"
+        android:layout_height="33dp"
+        android:clickable="true"
+        android:text="Home"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addTitleTextView" />
+
+    <TextView
+        android:id="@+id/addTitleTextView"
+        android:layout_width="258dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:text="Bug Tracker"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/addHomeTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/titleLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="161dp"
+        android:text="Title:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/priorityLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="50dp"
+        android:text="Priority"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/statusLabelTextView"
+        app:layout_constraintEnd_toStartOf="@+id/statusLabelTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/statusLabelTextView" />
+
+    <TextView
+        android:id="@+id/priorityLevelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:text="Priority"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/priorityLabelTextView"
+        app:layout_constraintStart_toStartOf="@id/priorityLabelTextView"
+        app:layout_constraintTop_toBottomOf="@+id/prioritySwitch" />
+
+    <TextView
+        android:id="@+id/statusLevelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:text="Status"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/statusLabelTextView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/statusLabelTextView"
+        app:layout_constraintTop_toBottomOf="@+id/statusSwitch" />
+
+    <TextView
+        android:id="@+id/statusLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="28dp"
+        android:text="Status"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/priorityLabelTextView"
+        app:layout_constraintTop_toBottomOf="@+id/editDescriptionText" />
+
+    <EditText
+        android:id="@+id/editTitleText"
+        android:layout_width="270dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="Title"
+        android:inputType="text"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/titleLabelTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/titleLabelTextView"
+        app:layout_constraintTop_toTopOf="@+id/titleLabelTextView" />
+
+    <Switch
+        android:id="@+id/prioritySwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        app:layout_constraintEnd_toEndOf="@+id/priorityLabelTextView"
+        app:layout_constraintStart_toStartOf="@+id/priorityLabelTextView"
+        app:layout_constraintTop_toBottomOf="@+id/priorityLabelTextView" />
+
+    <Switch
+        android:id="@+id/statusSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        app:layout_constraintEnd_toEndOf="@id/statusLabelTextView"
+        app:layout_constraintStart_toStartOf="@id/statusLabelTextView"
+        app:layout_constraintTop_toBottomOf="@+id/statusLabelTextView"
+        tools:layout_constraintEnd_toEndOf="@id/statusLabelTextView4" />
+
+    <Button
+        android:id="@+id/updateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/priorityLabelTextView"
+        app:layout_constraintStart_toStartOf="@id/priorityLabelTextView" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/statusLabelTextView"
+        app:layout_constraintStart_toStartOf="@id/statusLabelTextView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
