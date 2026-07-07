@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.count
 import kotlinx.coroutines.launch
 import android.graphics.Color
 import android.widget.Toast
+import com.example.unit3.network.RetrofitClient
 
 private var issueList: List<Issue> = emptyList()
 class MainActivity : AppCompatActivity() {
@@ -37,6 +38,24 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             //issueDao.clearAll()
+
+            try {
+                val remoteIssues = RetrofitClient.api.getIssues()
+
+                Toast.makeText(
+                    this@MainActivity,
+                    "Downloaded ${remoteIssues.size} issues",
+                    Toast.LENGTH_LONG
+                ).show()
+
+            } catch (e: Exception) {
+
+                Toast.makeText(
+                    this@MainActivity,
+                    e.message,
+                    Toast.LENGTH_LONG
+                ).show()
+            }
 
             val count = issueDao.getIssueCount()
 

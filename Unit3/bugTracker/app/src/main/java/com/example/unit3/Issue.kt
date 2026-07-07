@@ -10,6 +10,17 @@ data class Issue (
     @ColumnInfo(name = "issueID")
     val id: Int = 0,
 
+    val remoteId: String? = null,
+
+    val title: String,
+    val description: String,
+    val priority: String,
+    val status: String,
+    val creationDate: String
+)
+
+data class RemoteIssue(
+    val id: String? = null,
     val title: String,
     val description: String,
     val priority: String,

@@ -5,7 +5,7 @@ import androidx.room3.Database
 import androidx.room3.Room
 import androidx.room3.RoomDatabase
 
-@Database(entities=[(Issue::class)], version = 1, exportSchema = false)
+@Database(entities=[(Issue::class)], version = 2, exportSchema = false)
 abstract class IssueDatabase: RoomDatabase() {
     abstract fun issueDao(): IssueDao
 
@@ -17,9 +17,12 @@ abstract class IssueDatabase: RoomDatabase() {
             if (INSTANCE == null) {
                 synchronized(IssueDatabase::class.java){
                     if (INSTANCE == null){
-                        INSTANCE = Room.databaseBuilder(context.applicationContext,
+                        INSTANCE = Room.databaseBuilder(
+                            context.applicationContext,
                             IssueDatabase::class.java,
-                            "issue_database").build()
+                            "issue_database")
+                            .fallbackToDestructiveMigration(true)
+                            .build()
                     }
                 }
             }

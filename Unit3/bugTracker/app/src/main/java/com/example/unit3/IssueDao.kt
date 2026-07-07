@@ -22,7 +22,7 @@ interface IssueDao {
     suspend fun findID(id: Int): Issue?
 
     @Insert
-    suspend fun addIssue(issue: Issue)
+    suspend fun addIssue(issue: Issue): Long
 
     @Query("DELETE FROM issues WHERE issueID = :id")
     suspend fun deleteIssue(id: Int)

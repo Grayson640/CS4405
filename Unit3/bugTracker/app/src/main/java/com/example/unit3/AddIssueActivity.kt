@@ -25,14 +25,14 @@ class AddIssueActivity : AppCompatActivity() {
             insets
         }
 
-        val db = IssueDatabase.getDatabase(this)
-        val dao = db.issueDao()
         val saveButton = findViewById<Button>(R.id.saveButton)
         val cancelButton = findViewById<Button>(R.id.cancelButton)
         val priorityLabel = findViewById<TextView>(R.id.priorityLevelTextView)
         val statusLabel = findViewById<TextView>(R.id.statusLevelTextView)
         val prioritySwitch = findViewById<Switch>(R.id.prioritySwitch)
         val statusSwitch = findViewById<Switch>(R.id.statusSwitch)
+
+        val repository = IssueRepository(application)
 
         prioritySwitch.isChecked = false
         priorityLabel.text = "Low"
@@ -71,9 +71,6 @@ class AddIssueActivity : AppCompatActivity() {
             val title = findViewById<EditText>(R.id.editTitleText).text.toString()
             val description = findViewById<EditText>(R.id.editDescriptionText).text.toString()
 
-            val priority = if (prioritySwitch.isChecked) "High" else "Low"
-            val status = if (statusSwitch.isChecked) "Open" else "Closed"
-
             if (title.isBlank() || description.isBlank()) {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -83,6 +80,9 @@ class AddIssueActivity : AppCompatActivity() {
                 statusSwitch.isChecked = true
                 statusLabel.text = "Open"
             }
+
+            val priority = if (prioritySwitch.isChecked) "High" else "Low"
+            val status = if (statusSwitch.isChecked) "Open" else "Closed"
 
             lifecycleScope.launch {
 
@@ -94,8 +94,10 @@ class AddIssueActivity : AppCompatActivity() {
                     creationDate = System.currentTimeMillis().toString()
                 )
 
-                dao.addIssue(newIssue)
+                repository.insert(newIssue)
             }
+
+
 
             runOnUiThread {
                 Toast.makeText(this@AddIssueActivity, "Issue added", Toast.LENGTH_SHORT).show()
