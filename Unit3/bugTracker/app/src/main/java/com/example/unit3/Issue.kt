@@ -10,6 +10,7 @@ data class Issue (
     @ColumnInfo(name = "issueID")
     val id: Int = 0,
 
+    // remoteId is assigned a value after successful online backup
     val remoteId: String? = null,
 
     val title: String,
@@ -18,14 +19,6 @@ data class Issue (
     val status: String,
     val creationDate: String,
 
+    // Signals whether this entry has been uploaded
     val synced: Boolean = false
-)
-
-data class RemoteIssue(
-    val id: String? = null,
-    val title: String,
-    val description: String,
-    val priority: String,
-    val status: String,
-    val creationDate: String
 )

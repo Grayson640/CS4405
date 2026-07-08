@@ -13,6 +13,7 @@ abstract class IssueDatabase: RoomDatabase() {
         @Volatile
         private var INSTANCE: IssueDatabase? = null
 
+        // Creates shared database for the entire app lifecycle
         internal fun getDatabase(context: Context): IssueDatabase {
             if (INSTANCE == null) {
                 synchronized(IssueDatabase::class.java){
@@ -21,14 +22,14 @@ abstract class IssueDatabase: RoomDatabase() {
                             context.applicationContext,
                             IssueDatabase::class.java,
                             "issue_database")
-                            .fallbackToDestructiveMigration(true)
+
+                            // Wipes database if schema is updated
+                            //.fallbackToDestructiveMigration(true)
                             .build()
                     }
                 }
             }
             return INSTANCE!!
         }
-
     }
-
 }

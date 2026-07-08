@@ -21,5 +21,4 @@ interface IssueApi {
     suspend fun deleteIssue(
         @Path("id") id: String
     ): RemoteIssue
-
 }

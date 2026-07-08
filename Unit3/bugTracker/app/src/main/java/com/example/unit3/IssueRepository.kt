@@ -12,18 +12,16 @@ class IssueRepository(application: Application) {
         .getDatabase(application)!!
         .issueDao()
 
-    val allIssues = issueDao.getAllIssues()
-
     suspend fun insert(issue: Issue) {
 
-        // Save locally first
+        // Local save
         val localId = issueDao.addIssue(issue)
 
         // Retrieve the saved issue (it now has its Room ID)
         val localIssue = issueDao.findID(localId.toInt()) ?: return
 
         try {
-            // Upload to MockAPI
+            // Upload
             val response = api.addIssue(localIssue.toRemote())
 
             // Save the remote ID back into Room
@@ -56,21 +54,13 @@ class IssueRepository(application: Application) {
                     )
                 )
             } catch (e: Exception) {
+                scheduleRetry()
                 e.printStackTrace()
             }
         }
     }
 
-    /*suspend fun syncUnsyncedIssues() {
-        val issues = issueDao.getAllIssuesOnce()
-
-        for (issue in issues) {
-            if (issue.remoteId == null) {
-                insert(issue)
-            }
-        }
-    }*/
-
+    //
     private fun scheduleRetry() {
         val request =
             androidx.work.OneTimeWorkRequestBuilder<SyncWorker>().build()
@@ -82,13 +72,17 @@ class IssueRepository(application: Application) {
 
     suspend fun update(issue: Issue) {
 
-        issueDao.updateIssue(issue)
+        issueDao.updateIssue(issue.copy(synced = false))
 
         try {
             issue.remoteId?.let {
                 api.updateIssue(it, issue.toRemote())
             }
+
+            issueDao.updateIssue(issue.copy(synced = true))
+
         } catch (e: Exception) {
+            scheduleRetry()
             e.printStackTrace()
         }
     }
@@ -102,17 +96,8 @@ class IssueRepository(application: Application) {
                 api.deleteIssue(it)
             }
         } catch (e: Exception) {
+            scheduleRetry()
             e.printStackTrace()
         }
     }
-
-    suspend fun findById(id: Int) =
-        issueDao.findID(id)
-
-    suspend fun loadDefaultIssues() {
-        for (issue in DefaultIssues.issues) {
-            issueDao.addIssue(issue)
-        }
-    }
-
 }
