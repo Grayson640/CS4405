@@ -49,7 +49,9 @@ class EditIssueActivity : AppCompatActivity() {
                     val db = IssueDatabase.getDatabase(this@EditIssueActivity)
                     val dao = db.issueDao()
 
-                    dao.deleteIssue(issue)
+                    val repository = IssueRepository(application)
+
+                    repository.delete(issue)
 
                     runOnUiThread {
                         Toast.makeText(this@EditIssueActivity,
@@ -119,7 +121,9 @@ class EditIssueActivity : AppCompatActivity() {
                     val db = IssueDatabase.getDatabase(this@EditIssueActivity)
                     val dao = db.issueDao()
 
-                    dao.updateIssue(updatedIssue)
+                    val repository = IssueRepository(application)
+
+                    repository.update(updatedIssue)
 
                     runOnUiThread {
                         Toast.makeText(this@EditIssueActivity,

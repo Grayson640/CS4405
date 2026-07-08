@@ -93,11 +93,8 @@ class AddIssueActivity : AppCompatActivity() {
                     status = status,
                     creationDate = System.currentTimeMillis().toString()
                 )
-
                 repository.insert(newIssue)
             }
-
-
 
             runOnUiThread {
                 Toast.makeText(this@AddIssueActivity, "Issue added", Toast.LENGTH_SHORT).show()

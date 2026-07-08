@@ -36,9 +36,12 @@ class MainActivity : AppCompatActivity() {
         val db = IssueDatabase.getDatabase(applicationContext)!!
         val issueDao = db.issueDao()
 
-        lifecycleScope.launch {
-            //issueDao.clearAll()
+        val repository = IssueRepository(application)
 
+        lifecycleScope.launch {
+
+            repository.syncPendingIssues()
+            //issueDao.clearAll()
             try {
                 val remoteIssues = RetrofitClient.api.getIssues()
 
@@ -56,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
             }
-
+            
             val count = issueDao.getIssueCount()
 
             Toast.makeText(this@MainActivity, "issue count: " +

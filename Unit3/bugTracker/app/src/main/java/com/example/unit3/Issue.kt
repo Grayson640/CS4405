@@ -16,7 +16,9 @@ data class Issue (
     val description: String,
     val priority: String,
     val status: String,
-    val creationDate: String
+    val creationDate: String,
+
+    val synced: Boolean = false
 )
 
 data class RemoteIssue(

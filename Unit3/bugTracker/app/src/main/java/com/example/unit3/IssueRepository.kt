@@ -6,6 +6,7 @@ import com.example.unit3.network.toRemote
 
 class IssueRepository(application: Application) {
 
+    private val app = application
     private val api = RetrofitClient.api
     private val issueDao = IssueDatabase
         .getDatabase(application)!!
@@ -27,12 +28,56 @@ class IssueRepository(application: Application) {
 
             // Save the remote ID back into Room
             issueDao.updateIssue(
-                localIssue.copy(remoteId = response.id)
+                localIssue.copy(
+                    remoteId = response.id,
+                    synced = true
+                )
             )
 
         } catch (e: Exception) {
+            issueDao.updateIssue(
+                localIssue.copy(synced = false)
+            )
+            scheduleRetry()
             e.printStackTrace()
         }
+    }
+
+    suspend fun syncPendingIssues() {
+        val pendingIssues = issueDao.getAllIssuesOnce().filter {!it.synced}
+
+        for (issue in pendingIssues) {
+            try {
+                val response = api.addIssue(issue.toRemote())
+                issueDao.updateIssue(
+                    issue.copy(
+                        remoteId = response.id,
+                        synced = true
+                    )
+                )
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    /*suspend fun syncUnsyncedIssues() {
+        val issues = issueDao.getAllIssuesOnce()
+
+        for (issue in issues) {
+            if (issue.remoteId == null) {
+                insert(issue)
+            }
+        }
+    }*/
+
+    private fun scheduleRetry() {
+        val request =
+            androidx.work.OneTimeWorkRequestBuilder<SyncWorker>().build()
+
+        androidx.work.WorkManager
+            .getInstance(app)
+            .enqueue(request)
     }
 
     suspend fun update(issue: Issue) {

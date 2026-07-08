@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.material)
+    implementation("androidx.work:work-runtime-ktx:2.10.1")
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
@@ -59,12 +60,13 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
-    // Retrofit 2.x (written natively in Kotlin)
+
+    // Retrofit 2
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
-    // Room 3.x (modernized with Kotlin Symbol Processing)
+    // Room 3
     implementation("androidx.room3:room3-runtime:3.0.0")
     ksp("androidx.room3:room3-compiler:3.0.0")
     implementation("androidx.room3:room3-livedata:3.0.0")

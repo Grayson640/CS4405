@@ -7,6 +7,7 @@ object RetrofitClient {
 
     private const val BASE_URL =
         "https://6a4c4305f5eab0bb6b63ef3a.mockapi.io/api/v1/issues/"
+        //"https://badurltest.com/"
 
     val api: IssueApi by lazy {
 
